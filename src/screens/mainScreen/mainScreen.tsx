@@ -1,5 +1,5 @@
 import React from 'react';
-import {TouchableOpacity, View} from 'react-native';
+import {Pressable, View} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeScreen from './mainScreenTabs/HomeTab/home.tab';
 import DiscoverScreen from './mainScreenTabs/discover.tab';
@@ -105,7 +105,7 @@ function MyTabBar({state, descriptors, navigation}: any) {
         };
 
         return (
-          <TouchableOpacity
+          <Pressable
             accessibilityRole="button"
             accessibilityState={isFocused ? {selected: true} : {}}
             accessibilityLabel={options.tabBarAccessibilityLabel}
@@ -119,7 +119,7 @@ function MyTabBar({state, descriptors, navigation}: any) {
               color={isFocused ? 'white' : Colors.INACTIVE_GRAY}>
               {label}
             </AppText>
-          </TouchableOpacity>
+          </Pressable>
         );
       })}
     </View>

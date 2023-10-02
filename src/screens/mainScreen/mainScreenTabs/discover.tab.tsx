@@ -7,7 +7,7 @@ const DiscoverScreen = () => {
   return (
     <SafeAreaView style={styles.defaultContainer}>
       <AppText lineHeight={32} color={'white'} size={TextSize.Heading1}>
-        Activity Screen
+        Discover Screen
       </AppText>
     </SafeAreaView>
   );
