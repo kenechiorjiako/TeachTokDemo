@@ -153,10 +153,6 @@ const HomeScreen = () => {
     showError: boolean;
     showCorrect: boolean;
   }) => {
-    const colorSuccess = 'rgba(87, 174, 145, 0.7)';
-    const colorError = 'rgba(166, 71, 62, 0.7)';
-    const colorDefault = 'rgba(255, 255, 255, 0.5)';
-
     return (
       <TouchableOpacity
         disabled={!enabled}
@@ -167,13 +163,13 @@ const HomeScreen = () => {
             styles.optionContainer,
             {
               backgroundColor: showError
-                ? colorError
+                ? 'rgba(166, 71, 62, 0.7)'
                 : showCorrect
-                ? colorSuccess
-                : colorDefault,
+                ? 'rgba(87, 174, 145, 0.7)'
+                : 'rgba(255, 255, 255, 0.5)',
             },
           ]}>
-          <TextStroke stroke={1} color={'#000000'}>
+          <TextStroke stroke={1} color={'#000'}>
             <Text style={styles.optionText}>{text}</Text>
           </TextStroke>
         </View>
@@ -288,22 +284,6 @@ const HomeScreen = () => {
                 </AppText>
 
                 {item.question.options.map((value, _) => {
-                  let showError = false;
-                  let showCorrect = false;
-                  if (
-                    item.selectedAnswerId != null &&
-                    value.id == item.answer.correct_options[0].id
-                  ) {
-                    showCorrect = true;
-                  }
-                  if (
-                    item.selectedAnswerId != null &&
-                    item.selectedAnswerId !=
-                      item.answer.correct_options[0].id &&
-                    value.id == item.selectedAnswerId
-                  ) {
-                    showError = true;
-                  }
                   return (
                     <OptionButton
                       text={value.answer}
@@ -311,8 +291,15 @@ const HomeScreen = () => {
                       onPress={() => {
                         onAnswerPress(index, value.id);
                       }}
-                      showCorrect={showCorrect}
-                      showError={showError}
+                      showCorrect={
+                        item.selectedAnswerId != null &&
+                        value.id == item.answer.correct_options[0].id
+                      }
+                      showError={
+                        value.id == item.selectedAnswerId &&
+                        item.selectedAnswerId !=
+                          item.answer.correct_options[0].id
+                      }
                     />
                   );
                 })}
