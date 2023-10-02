@@ -341,7 +341,7 @@ const HomeScreen = () => {
           data={questions}
           renderItem={renderQuestion}
           style={styles.page}
-          keyExtractor={(item, _) => item.question.id.toString()}
+          keyExtractor={(item, index) => index.toString()}
           pagingEnabled
           scrollEventThrottle={16}
           viewabilityConfig={{
